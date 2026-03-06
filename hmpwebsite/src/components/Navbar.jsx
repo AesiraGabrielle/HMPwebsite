@@ -76,7 +76,7 @@ export default function Navbar() {
             <NavLink to="/" className={navClass}>Home</NavLink>
             <NavLink to="/about" className={navClass}>About</NavLink>
             <NavLink to="/services" className={navClass}>Services</NavLink>
-            <NavLink to="/clients" className={navClass}>Clients</NavLink>
+            {/* <NavLink to="/clients" className={navClass}>Clients</NavLink> */}
             <NavLink to="/contact" className={navClass}>Contact</NavLink>
           </div>
 
@@ -124,7 +124,7 @@ export default function Navbar() {
             <NavLink to="/" className={mobileNavClass} onClick={() => setMenuOpen(false)}>Home</NavLink>
             <NavLink to="/about" className={mobileNavClass} onClick={() => setMenuOpen(false)}>About</NavLink>
             <NavLink to="/services" className={mobileNavClass} onClick={() => setMenuOpen(false)}>Services</NavLink>
-            <NavLink to="/clients" className={mobileNavClass} onClick={() => setMenuOpen(false)}>Clients</NavLink>
+            {/* <NavLink to="/clients" className={mobileNavClass} onClick={() => setMenuOpen(false)}>Clients</NavLink> */}
             <NavLink to="/contact" className={mobileNavClass} onClick={() => setMenuOpen(false)}>Contact</NavLink>
           </div>
         </div>

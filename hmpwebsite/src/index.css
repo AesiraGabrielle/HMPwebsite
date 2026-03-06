@@ -10,3 +10,360 @@
 .animate-scroll {
   animation: scroll 20s linear infinite;
 }
+
+@keyframes clientsScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-220px * 23)); }
+}
+
+.clients-track {
+  display: flex;
+  width: calc(220px * 46);
+  animation: clientsScroll 55s linear infinite;
+}
+
+.clients-track:hover {
+  animation-play-state: paused;
+}
+
+.clients-slide {
+  width: 220px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 16px 24px;
+}
+
+.clients-slide img {
+  max-height: 100px;
+  max-width: 170px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.clients-slide img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* ── Clients infinite scroll ── */
+@keyframes clientsScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-220px * 23)); }
+}
+
+.clients-track {
+  display: flex;
+  width: calc(220px * 46);
+  animation: clientsScroll 55s linear infinite;
+}
+
+.clients-track:hover {
+  animation-play-state: paused;
+}
+
+.clients-slide {
+  width: 220px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 12px 16px;
+  background: transparent;
+}
+
+.clients-slide img {
+  max-height: 100px;
+  max-width: 170px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.82;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.clients-slide img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.about-page {
+  background: linear-gradient(160deg, #0d0f1a 0%, #0f1c2e 40%, #091929 70%, #0a1020 100%);
+}
+
+/* ── Section divider ─────────────────────────────────────────── */
+.about-divider       { @apply flex items-center gap-3; }
+.about-divider-line  { @apply h-px flex-1; }
+.about-divider-line-r { background: linear-gradient(to right, rgba(96,165,250,0.4), transparent); }
+.about-divider-line-l { background: linear-gradient(to left,  rgba(96,165,250,0.4), transparent); }
+
+/* ── Stats bar ───────────────────────────────────────────────── */
+.stats-bar {
+  @apply absolute bottom-0 inset-x-0 border-t z-20;
+  border-color: rgba(255,255,255,0.08);
+  background: rgba(13,15,26,0.85);
+  backdrop-filter: blur(8px);
+}
+.stats-value {
+  @apply text-2xl font-black text-transparent bg-clip-text;
+  background-image: linear-gradient(135deg, #ffffff, #93c5fd);
+}
+
+/* ── Value card ──────────────────────────────────────────────── */
+.value-card {
+  @apply rounded-2xl border relative overflow-hidden transition-all duration-300;
+  padding: 1.25rem;
+  border-color: rgba(255,255,255,0.08);
+  background: linear-gradient(145deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.015) 100%);
+}
+.value-card:hover { border-color: rgba(96,165,250,0.30); }
+.value-card-glow {
+  @apply absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none;
+  background: radial-gradient(circle at 50% 0%, rgba(96,165,250,0.08) 0%, transparent 65%);
+}
+.value-card:hover .value-card-glow { opacity: 1; }
+.value-card-icon {
+  @apply w-10 h-10 rounded-xl flex items-center justify-center mb-4;
+  border: 1px solid rgba(96,165,250,0.20);
+  background: rgba(59,130,246,0.10);
+}
+
+/* ── Vision / Mission card ───────────────────────────────────── */
+.vm-card {
+  @apply relative rounded-2xl overflow-hidden;
+  padding: 1.25rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+@media (min-width: 640px) { .vm-card { padding: 2rem; } }
+.vm-card-bar {
+  @apply absolute top-0 left-0 w-1 h-full rounded-l-2xl;
+}
+
+/* ── Partners carousel stage ─────────────────────────────────── */
+.p-stage {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+.p-card {
+  position: absolute;
+  width: 200px;
+  transition: all 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+@media (min-width: 480px) { .p-card { width: 240px; } }
+
+.p-card-inner {
+  @apply rounded-2xl overflow-hidden border transition-all duration-300;
+  background: linear-gradient(145deg, rgba(15,28,46,0.95), rgba(9,25,41,0.98));
+}
+.p-card-active   { border-color: rgba(96,165,250,0.50); box-shadow: 0 25px 50px rgba(30,58,138,0.4); }
+.p-card-inactive { border-color: rgba(255,255,255,0.08); }
+.p-card-grad {
+  @apply absolute inset-0;
+  background: linear-gradient(to top, rgba(9,25,41,1) 0%, transparent 55%);
+}
+.p-card-shimmer {
+  @apply absolute bottom-0 inset-x-0 h-0.5;
+  background: linear-gradient(to right, transparent, #60a5fa, transparent);
+}
+.p-nav-btn {
+  @apply w-9 h-9 rounded-full border flex items-center justify-center transition-all;
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.50);
+  background: rgba(255,255,255,0.04);
+}
+.p-nav-btn:hover { border-color: rgba(255,255,255,0.40); color: white; }
+
+/* ── Team photo carousel ─────────────────────────────────────── */
+.carousel-wrapper {
+  /* wrapper IS the visible frame — no extra padding around the image */
+  width: 400px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+.carousel-container {
+  width: 400px;
+  height: 250px;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  width: calc(400px * 5);
+  animation: hmpSliding 20s infinite;
+}
+.carousel-track:hover { animation-play-state: paused; }
+.carousel-track > div {
+  width: 400px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+@keyframes hmpSliding {
+  0%,18%  { transform: translateX(0);       }
+  22%,38% { transform: translateX(-400px);  }
+  42%,58% { transform: translateX(-800px);  }
+  62%,78% { transform: translateX(-1200px); }
+  82%,98% { transform: translateX(-1600px); }
+  100%    { transform: translateX(0);       }
+}
+
+@media (max-width: 768px) {
+  .carousel-wrapper   { width: 280px; height: 175px; }
+  .carousel-container { width: 280px; height: 175px; }
+  .carousel-track     { width: calc(280px * 5); animation-name: hmpSlidingMobile; }
+  .carousel-track > div { width: 280px; height: 175px; }
+  @keyframes hmpSlidingMobile {
+    0%,18%  { transform: translateX(0);      }
+    22%,38% { transform: translateX(-240px); }
+    42%,58% { transform: translateX(-480px); }
+    62%,78% { transform: translateX(-720px); }
+    82%,98% { transform: translateX(-1120px); }
+    100%    { transform: translateX(0);       }
+  }
+}
+
+/* ── People badge ────────────────────────────────────────────── */
+.people-badge {
+  @apply inline-block px-5 py-2 rounded-xl text-xs font-bold text-white whitespace-nowrap;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(9,18,36,0.95);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* ============================================================================
+   SERVICES PAGE — minimal manual CSS (only what Tailwind can't express)
+   Paste into index.css
+   ============================================================================ */
+
+/* ── Service name gradient ── */
+/* Tailwind can't do arbitrary multi-stop gradients on text */
+.svc-name-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #e0f2ff 25%, #93c5fd 55%, #60a5fa 80%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 28px rgba(96,165,250,0.18));
+}
+
+/* ── Logo blend — kills white backgrounds on client logos ── */
+/* mix-blend-mode is not a Tailwind utility */
+.svc-logo-blend {
+  mix-blend-mode: luminosity;
+  filter: grayscale(10%) brightness(1.05);
+  transition: opacity 0.3s, filter 0.3s, mix-blend-mode 0s;
+}
+.svc-logo-blend:hover {
+  mix-blend-mode: normal;
+  filter: grayscale(0%) brightness(1);
+}
+
+/* ── Portfolio 3D carousel ── */
+/* 3D transform-style and keyframe animation can't be done in Tailwind */
+@keyframes svc-rotate3d {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(-360deg); }
+}
+
+.svc-portfolio-track {
+  position: absolute;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  animation: svc-rotate3d 40s linear infinite;
+}
+.svc-portfolio-track:hover { animation-play-state: paused; }
+
+.svc-portfolio-card {
+  position: absolute;
+  width: 240px; height: 165px;
+  left: calc(50% - 120px); top: calc(50% - 82px);
+  border-radius: 14px; overflow: hidden; cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+@media (min-width: 768px) {
+  .svc-portfolio-card { width:280px; height:190px; left:calc(50% - 140px); top:calc(50% - 95px); }
+}
+.svc-portfolio-card:nth-child(1){transform:rotateY(  0deg)translateZ(420px)}
+.svc-portfolio-card:nth-child(2){transform:rotateY( 40deg)translateZ(420px)}
+.svc-portfolio-card:nth-child(3){transform:rotateY( 80deg)translateZ(420px)}
+.svc-portfolio-card:nth-child(4){transform:rotateY(120deg)translateZ(420px)}
+.svc-portfolio-card:nth-child(5){transform:rotateY(160deg)translateZ(420px)}
+.svc-portfolio-card:nth-child(6){transform:rotateY(200deg)translateZ(420px)}
+.svc-portfolio-card:nth-child(7){transform:rotateY(240deg)translateZ(420px)}
+.svc-portfolio-card:nth-child(8){transform:rotateY(280deg)translateZ(420px)}
+.svc-portfolio-card:nth-child(9){transform:rotateY(320deg)translateZ(420px)}
+@media (min-width: 768px) {
+  .svc-portfolio-card:nth-child(1){transform:rotateY(  0deg)translateZ(480px)}
+  .svc-portfolio-card:nth-child(2){transform:rotateY( 40deg)translateZ(480px)}
+  .svc-portfolio-card:nth-child(3){transform:rotateY( 80deg)translateZ(480px)}
+  .svc-portfolio-card:nth-child(4){transform:rotateY(120deg)translateZ(480px)}
+  .svc-portfolio-card:nth-child(5){transform:rotateY(160deg)translateZ(480px)}
+  .svc-portfolio-card:nth-child(6){transform:rotateY(200deg)translateZ(480px)}
+  .svc-portfolio-card:nth-child(7){transform:rotateY(240deg)translateZ(480px)}
+  .svc-portfolio-card:nth-child(8){transform:rotateY(280deg)translateZ(480px)}
+  .svc-portfolio-card:nth-child(9){transform:rotateY(320deg)translateZ(480px)}
+}
+
+.svc-portfolio-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(2,8,24,0.97) 0%, rgba(2,8,24,0.45) 55%, transparent 100%);
+  transition: background 0.35s;
+}
+.svc-portfolio-card:hover .svc-portfolio-overlay { background: rgba(2,8,24,0.88); }
+
+.svc-portfolio-desc {
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.svc-portfolio-card:hover .svc-portfolio-desc { opacity: 1; transform: translateY(0); }
+
+/* ── Scrollbar hide for mobile thumb strip ── */
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CONTACT PAGE — paste into index.css
+   All classes used exclusively by Contact.jsx
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Form inputs ─────────────────────────────────────────────────────────── */
+/* Handled fully inline via Tailwind in Contact.jsx — no extra CSS needed.   */
+
+/* ── Custom select dropdown ─────────────────────────────────────────────── */
+.contact-dropdown {
+  transform-origin: top;
+}
+
+/* ── Scrollbar inside dropdown ───────────────────────────────────────────── */
+.contact-dropdown::-webkit-scrollbar {
+  width: 4px;
+}
+.contact-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+.contact-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(147, 197, 253, 0.2);
+  border-radius: 999px;
+}
+
+/* ── Pill / badge animations ─────────────────────────────────────────────── */
+@keyframes contact-ping {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}

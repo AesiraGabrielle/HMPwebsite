@@ -6,6 +6,8 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Clients from "./pages/Clients";
+import ContactSection from "./pages/ContactSection";
+
 
 export default function App() {
   return (
@@ -18,6 +20,7 @@ export default function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/clients" element={<Clients />} />
+        <Route path="/contact" element={<ContactSection />} />
       </Routes>
     </BrowserRouter>
   );

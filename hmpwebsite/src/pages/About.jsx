@@ -20,10 +20,10 @@ const VALUES = [
 
 const PARTNERS = [
   { name: "Maria Santos",   role: "Managing Director",  country: "Philippines", code: "ph", bio: "Leads HMP Co. Philippines with 15+ years in business development and public sector advisory across Southeast Asia.", image: "/assets/images/partner-ph.jpg" },
-  { name: "Julia", role: "Senior Partner",     country: "Philippines",     code: "de", bio: "Heads the European arm specializing in economic development frameworks and institutional capacity building.",           image: "/assets/images/partner-de.jpg" },
-  { name: "Jenny Cinco",     role: "CEO",  country: "Philippines",   code: "id", bio: "Oversees HMP partnerships, driving economic integration and SME development programs.",              image: "/assets/images/partner-id.jpg" },
-  { name: "Niel John Butad",  role: "Country Lead",       country: "Philippines", code: "tl", bio: "Guides HMP engagement in Timor-Leste with focus on institutional reform and rural development.",                     image: "/assets/images/partner-tl.jpg" },
-  { name: "Linh Nguyen",    role: "Operations Manager", country: "Philippines",     code: "vn", bio: "Coordinates project delivery in Vietnam, linking international expertise with local business realities.",              image: "/assets/images/partner-vn.jpg" },
+  { name: "Julia", role: "Senior Partner",     country: "Philippines",     code: "ph", bio: "Heads the European arm specializing in economic development frameworks and institutional capacity building.",           image: "/assets/images/partner-ph.jpg" },
+  { name: "Jenny Cinco",     role: "CEO",  country: "Philippines",   code: "ph", bio: "Oversees HMP partnerships, driving economic integration and SME development programs.",              image: "/assets/images/partner-ph.jpg" },
+  { name: "Niel John Butad",  role: "Country Lead",       country: "Philippines", code: "ph", bio: "Guides HMP engagement in Timor-Leste with focus on institutional reform and rural development.",                     image: "/assets/images/partner-ph.jpg" },
+  { name: "Linh Nguyen",    role: "Operations Manager", country: "Philippines",     code: "ph", bio: "Coordinates project delivery in Vietnam, linking international expertise with local business realities.",              image: "/assets/images/partner-ph.jpg" },
 ];
 
 const GROUP_PHOTOS = [

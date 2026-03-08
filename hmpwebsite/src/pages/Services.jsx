@@ -450,7 +450,10 @@ function PortfolioSection() {
 // ─── QUOTATION FORM ───────────────────────────────────────────────────────────
 
 function QuotationSection() {
-  const [form, setForm]     = useState({ name:"",email:"",phone:"",service:"",business:"",type:"" });
+  const [form, setForm] = useState({
+    name:"", email:"", phone:"", company:"",
+    service:"", budget:"", timeline:"", details:""
+  });
   const [submitted, setSub] = useState(false);
   const [focused, setFoc]   = useState("");
 
@@ -459,30 +462,41 @@ function QuotationSection() {
     e.preventDefault();
     setSub(true);
     setTimeout(() => setSub(false), 5000);
-    setForm({ name:"",email:"",phone:"",service:"",business:"",type:"" });
+    setForm({ name:"", email:"", phone:"", company:"", service:"", budget:"", timeline:"", details:"" });
   };
 
-  const inp = (n, type="text", ph="") => ({
-    name:n, type, placeholder:ph,
+  const fieldCls = (n) =>
+    `w-full rounded-lg px-4 py-2.5 text-sm text-white placeholder-white/25 outline-none transition-all duration-200
+     ${focused===n
+       ? "border border-blue-400/65 shadow-[0_0_0_3px_rgba(59,130,246,0.10)]"
+       : "border border-white/[0.09] hover:border-white/20"}`;
+
+  const inp = (n, type="text") => ({
+    name:n, type,
     value:form[n], onChange:change,
     onFocus:()=>setFoc(n), onBlur:()=>setFoc(""),
-    className:`w-full bg-transparent rounded-lg px-4 py-3 text-sm text-white placeholder-white/25
-               outline-none transition-all duration-200
-               ${focused===n
-                 ? "border border-blue-400/65 shadow-[0_0_0_3px_rgba(59,130,246,0.10)]"
-                 : "border border-white/[0.09] hover:border-white/20"}`,
+    className: fieldCls(n),
     style:{ background:"rgba(255,255,255,0.04)" },
   });
+
+  const selectCls = (n) =>
+    `w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-all duration-200 appearance-none pr-8 cursor-pointer
+     ${focused===n
+       ? "border border-blue-400/65 shadow-[0_0_0_3px_rgba(59,130,246,0.10)]"
+       : "border border-white/[0.09] hover:border-white/20"}`;
+
+  const Label = ({ children, required }) => (
+    <label className="block text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-blue-300/50 mb-1.5">
+      {children}{required && <span className="text-blue-400/70 ml-0.5">*</span>}
+    </label>
+  );
 
   return (
     <section className="relative py-20 sm:py-28 overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px"
         style={{ background:"linear-gradient(to right,transparent,rgba(255,255,255,0.07),transparent)" }} />
-
-      {/* Very subtle surface lift — barely perceptible, just enough separation */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ background:"linear-gradient(180deg,transparent 0%,rgba(11,26,46,0.35) 15%,rgba(11,26,46,0.35) 85%,transparent 100%)" }} />
-
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 pointer-events-none"
         style={{ background:"radial-gradient(circle at 100% 50%,rgba(37,99,235,0.07) 0%,transparent 60%)" }} />
 
@@ -544,7 +558,7 @@ function QuotationSection() {
               style={{ background:"linear-gradient(to right,transparent,rgba(255,255,255,0.28),transparent)" }} />
 
             <p className="text-[0.65rem] uppercase tracking-[0.3em] text-blue-300 font-semibold mb-1">Free Quote</p>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-5">Request a Quotation</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Request a Quotation</h3>
 
             <AnimatePresence>
               {submitted && (
@@ -556,49 +570,97 @@ function QuotationSection() {
               )}
             </AnimatePresence>
 
-            <form onSubmit={submit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="text"  placeholder="Your Name"   required {...inp("name")} />
-                <input type="email" placeholder="Your E-mail" required {...inp("email")} />
+            <form onSubmit={submit} className="flex flex-col gap-3">
+
+              {/* Row 1 — Name + Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <Label required>Full Name</Label>
+                  <input required {...inp("name")} placeholder="Juan dela Cruz" />
+                </div>
+                <div>
+                  <Label required>Email Address</Label>
+                  <input {...inp("email","email")} placeholder="juan@company.com" required />
+                </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="tel" placeholder="Your Phone" {...inp("phone")} />
+
+              {/* Row 2 — Phone + Company */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <Label>Phone Number</Label>
+                  <input {...inp("phone","tel")} placeholder="+63 9XX XXX XXXX" />
+                </div>
+                <div>
+                  <Label>Company / Org.</Label>
+                  <input {...inp("company")} placeholder="Your company name" />
+                </div>
+              </div>
+
+              {/* Row 3 — Service */}
+              <div>
+                <Label required>Service Needed</Label>
                 <div className="relative">
                   <select name="service" value={form.service} onChange={change}
                     onFocus={()=>setFoc("service")} onBlur={()=>setFoc("")} required
-                    className={`w-full rounded-lg px-4 py-3 text-sm outline-none transition-all duration-200
-                      appearance-none pr-8 cursor-pointer
-                      ${focused==="service"
-                        ? "border border-blue-400/65 shadow-[0_0_0_3px_rgba(59,130,246,0.10)]"
-                        : "border border-white/[0.09] hover:border-white/20"}`}
-                    style={{
-                      background:"rgba(12,24,50,0.95)",
-                      color: form.service ? "white" : "rgba(255,255,255,0.3)"
-                    }}>
-                    <option value="" disabled>What service do you need?</option>
+                    className={selectCls("service")}
+                    style={{ background:"rgba(12,24,50,0.95)", color: form.service ? "white" : "rgba(255,255,255,0.3)" }}>
+                    <option value="" disabled>Select a service…</option>
                     {SERVICES.map(s=>(
-                      <option key={s.title} value={s.title} style={{ color:"white", background:"#0a1628" }}>
-                        {s.title}
-                      </option>
+                      <option key={s.title} value={s.title} style={{ color:"white", background:"#0a1628" }}>{s.title}</option>
                     ))}
                   </select>
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/30 text-[0.6rem]">▼</div>
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="text" placeholder="Your Business Name" {...inp("business")} />
-                <input type="text" placeholder="Business Type"      {...inp("type")} />
+
+              {/* Row 4 — Budget + Timeline */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <Label>Estimated Budget</Label>
+                  <div className="relative">
+                    <select name="budget" value={form.budget} onChange={change}
+                      onFocus={()=>setFoc("budget")} onBlur={()=>setFoc("")}
+                      className={selectCls("budget")}
+                      style={{ background:"rgba(12,24,50,0.95)", color: form.budget ? "white" : "rgba(255,255,255,0.3)" }}>
+                      <option value="" disabled>Select range…</option>
+                      {["Below ₱50,000","₱50,000 – ₱150,000","₱150,000 – ₱500,000","₱500,000 – ₱1,000,000","Above ₱1,000,000","To be discussed"].map(b=>(
+                        <option key={b} value={b} style={{ color:"white", background:"#0a1628" }}>{b}</option>
+                      ))}
+                    </select>
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/30 text-[0.6rem]">▼</div>
+                  </div>
+                </div>
+                <div>
+                  <Label>Preferred Timeline</Label>
+                  <input {...inp("timeline")} placeholder="e.g. 3 months, ASAP" />
+                </div>
               </div>
+
+              {/* Row 5 — Project Details */}
+              <div>
+                <Label required>Project Details</Label>
+                <textarea
+                  name="details" rows={3}
+                  placeholder="Tell us about your project — goals, requirements, and details…"
+                  value={form.details} onChange={change} required
+                  onFocus={()=>setFoc("details")} onBlur={()=>setFoc("")}
+                  className={`${fieldCls("details")} resize-none`}
+                  style={{ background:"rgba(255,255,255,0.04)" }}
+                />
+              </div>
+
               <motion.button type="submit"
                 whileHover={{ scale:1.02, y:-2 }} whileTap={{ scale:0.98 }}
                 transition={{ type:"spring", stiffness:400, damping:18 }}
-                className="w-full py-3.5 font-bold text-sm tracking-widest uppercase rounded-lg
+                className="w-full py-3 font-bold text-sm tracking-widest uppercase rounded-lg
                            relative overflow-hidden text-white"
                 style={{ background:"linear-gradient(135deg,#1d4ed8 0%,#2563eb 50%,#1d4ed8 100%)" }}>
                 <span className="relative z-10">Submit Request</span>
                 <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
                   style={{ background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent)" }} />
               </motion.button>
+
+              <p className="text-center text-[0.62rem] text-white/20">Free &amp; non-binding · We respond within 24 hours</p>
             </form>
           </motion.div>
         </div>

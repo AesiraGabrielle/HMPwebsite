@@ -86,10 +86,21 @@ function Hero() {
       <div className="w-full lg:w-1/2 flex items-center px-5 sm:px-8 lg:px-16 pt-28 sm:pt-32 lg:pt-13 pb-20 relative z-10">
         <div className="absolute left-0 top-1/4 bottom-1/4 w-px hidden lg:block bg-gradient-to-b from-transparent via-[rgba(99,179,237,0.4)] to-transparent" />
 
-        <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }}>
-          <div className="flex items-center gap-3 mb-6">
+        <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }}
+          className="w-full">
+
+          {/* Eyebrow */}
+          <div className="flex items-center gap-3 mb-4">
             <div className="h-px w-8 bg-blue-400/70" />
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-blue-300">About HMP Co.</span>
+          </div>
+
+          {/* ── Mobile hero image — visible only below lg ── */}
+          <div className="lg:hidden w-full mb-6 rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+            style={{ aspectRatio:"16/9" }}>
+            <img src="/assets/images/Team/heroabout.jpg" alt="HMP Team"
+              className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f1a]/60 to-transparent pointer-events-none" />
           </div>
 
           <h1 className="font-black leading-[1.05] tracking-tight mb-6"
